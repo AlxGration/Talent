@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.question_details.QuestionDetailsFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:fitsSystemWindows="true"
+        app:elevation="1dp"
+        android:theme="@style/MyActionBar">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_collapseMode="pin"
+            android:theme="@style/ToolbarTheme"
+            app:title="@string/question"
+            app:titleTextColor="@color/red">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_answer_visibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                app:chipStrokeWidth="2dp"
+                android:text="Ответ"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/padding16"
+                app:chipStrokeColor="@color/chip_stroke"
+                android:checkable="true"
+                app:checkedIcon="@null"
+                app:chipIcon="@drawable/ic_eye"
+                app:chipIconTint="@color/chip_stroke"
+                app:chipBackgroundColor="@color/chip_back"
+                android:textColor="@color/chip_stroke" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/tv_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/h1"
+        android:text="Question"
+        android:layout_marginTop="@dimen/padding16"
+        android:layout_marginEnd="@dimen/padding16"
+        android:layout_marginStart="@dimen/padding16"
+        android:fontFamily="@font/mts_sans_medium"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout" />
+
+    <TextView
+        android:id="@+id/tv_answer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:textSize="@dimen/h3"
+        android:text="Answer"
+        android:layout_marginEnd="@dimen/padding16"
+        android:layout_marginStart="@dimen/padding16"
+        android:visibility="invisible"
+        android:textColor="@color/black"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_question"
+        app:layout_constraintBottom_toTopOf="@id/chg_tags"/>
+
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chg_tags"
+        android:layout_margin="@dimen/padding16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:chipSpacingHorizontal="4dp"
+        app:chipSpacingVertical="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ProgressBar
+        android:id="@+id/p_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

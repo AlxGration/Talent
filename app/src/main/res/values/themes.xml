@@ -1,0 +1,50 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MTSTalent" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorPrimaryVariant">@color/red_dark</item>
+        <item name="colorOnPrimary">@color/red_60</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/red_60</item>
+        <item name="colorSecondaryVariant">@color/red_60</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!--Customize your theme here. -->
+        <item name="android:fontFamily">@font/mts_sans_regular</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
+
+    <style name="MyActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:fontFamily">@font/mts_sans_bold</item>
+        <item name="titleTextAppearance">@style/MyTitleTextAppearance</item>
+
+    </style>
+
+    <style name="MyTitleTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textSize">?android:attr/title</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/mts_sans_bold</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorControlNormal">@color/red</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme"
+        parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/style_filter_fragment</item>
+    </style>
+
+</resources>

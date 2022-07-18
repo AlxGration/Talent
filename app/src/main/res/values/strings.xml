@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Собеседование</string>
+
+    <string name="vacancies">Вакансии</string>
+    <string name="create_vacancy">Создание вакансии</string>
+    <string name="vacancy_title">Название вакансии</string>
+    <string name="new_vacancy_title">Название новой вакансии</string>
+    <string name="vacancy_added">Вакансия успешно создана</string>
+
+    <string name="questions">Вопросы</string>
+    <string name="question">Вопрос</string>
+    <string name="create_question">Создание вопроса</string>
+    <string name="crete_n_questions">Создать (выбрано: %d вопросов)</string>
+    <string name="question_added">Вопрос успешно создан</string>
+
+    <string name="search">Поиск</string>
+    <string name="answer">Ответ</string>
+    <string name="create">Создать</string>
+    <string name="required_field">"*Это обязательное поле"</string>
+    <string name="tags">Теги</string>
+    <string name="not_found">По вашему запросу ничего не найдено</string>
+    <string name="delete">Удалить</string>
+    <string name="add">Добавить</string>
+    <string name="filter">Фильтр</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Отменить</string>
+
+    <string name="err_unexpected">Возникла непредвиденная ошибка</string>
+    <string name="err_at_least_1_question">Необходимо выбрать минимум 1 вопрос</string>
+    <string name="err_at_least_1_tag">Необходимо назначить минимум 1 тэг</string>
+    <string name="err_empty_title">Название не может быть пустым</string>
+    <string name="err_empty_question">Вопрос не может быть пустым</string>
+    <string name="who_it_will_be">Ну и кто же это будет?</string>
+    <string name="no_such_functionslity">Данный функционал будет реализован позже</string>
+</resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_vacancies">
+
+    <fragment
+        android:id="@+id/navigation_vacancies"
+        android:name="com.team.alex.talent.presentation.vacancies.VacanciesFragment"
+        android:label="@string/vacancies"
+        tools:layout="@layout/fragment_vacancies" >
+        <action
+            android:id="@+id/action_navigation_vacancies_to_add_vacancy"
+            app:destination="@id/navigation_add_vacancy" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_questions"
+        android:name="com.team.alex.talent.presentation.questions.QuestionsFragment"
+        android:label="@string/questions"
+        tools:layout="@layout/fragment_questions" >
+        <action
+            android:id="@+id/action_navigation_questions_to_question_details"
+            app:destination="@id/navigation_question_details" />
+        <action
+            android:id="@+id/action_navigation_questions_to_add_question"
+            app:destination="@id/navigation_add_question" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_question_details"
+        android:name="com.team.alex.talent.presentation.question_details.QuestionDetailsFragment"
+        android:label="@string/question"
+        tools:layout="@layout/fragment_question_details" />
+    <fragment
+        android:id="@+id/navigation_add_question"
+        android:name="com.team.alex.talent.presentation.add_question.AddQuestionFragment"
+        android:label="@string/create_question"
+        tools:layout="@layout/fragment_add_question"/>
+    <fragment
+        android:id="@+id/navigation_add_vacancy"
+        android:name="com.team.alex.talent.presentation.add_vacancy.AddVacancyFragment"
+        android:label="fragment_add_vacancy"
+        tools:layout="@layout/fragment_add_vacancy" >
+        <action
+            android:id="@+id/action_navigation_add_vacancy_to_question_details"
+            app:destination="@id/navigation_question_details" />
+    </fragment>
+
+
+</navigation>

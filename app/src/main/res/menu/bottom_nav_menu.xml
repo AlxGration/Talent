@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_vacancies"
+        android:icon="@drawable/ic_not_found"
+        android:title="@string/vacancies" />
+
+    <item
+        android:id="@+id/navigation_questions"
+        android:icon="@drawable/ic_list"
+        android:title="@string/questions" />
+
+</menu>
