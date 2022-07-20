@@ -18,7 +18,9 @@ import com.team.alex.talent.databinding.FragmentQuestionDetailsBinding
 import com.team.alex.talent.domain.model.Question
 import com.team.alex.talent.domain.model.Tag
 import com.team.alex.talent.presentation.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class QuestionDetailsFragment : Fragment(R.layout.fragment_question_details) {
 
     private val questionDetailsViewModel: QuestionDetailsViewModel by viewModels()
@@ -56,13 +58,6 @@ class QuestionDetailsFragment : Fragment(R.layout.fragment_question_details) {
         binding.chipAnswerVisibility.setOnClickListener { chip ->
             binding.tvAnswer.visibility =
                 if ((chip as Chip).isChecked) View.VISIBLE else View.INVISIBLE
-        }
-
-        //try to get arguments from parent
-        arguments?.get(QUESTION_ARG).let {
-            if (it is Question) {
-                questionDetailsViewModel.setQuestion(it)
-            }
         }
     }
 

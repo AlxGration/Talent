@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/fragment_create_question.xml" value="0.27794871794871795" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_interviews.xml" value="0.17300724637681159" />
-        <entry key="app/src/main/res/layout/fragment_question_details.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_question_details.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_questions.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_search_filter.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_vacancies.xml" value="0.17300724637681159" />

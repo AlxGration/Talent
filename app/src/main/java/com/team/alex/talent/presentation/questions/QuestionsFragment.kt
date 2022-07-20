@@ -179,14 +179,14 @@ class QuestionsFragment : Fragment(R.layout.fragment_questions),
 
         val itemTouchHelper = ItemTouchHelper(object : SwipeHelper(binding.rvQuestions) {
             override fun instantiateUnderlayButton(position: Int): List<UnderlayButton> {
-                return listOf(deleteButton(position))
+                return listOf(swipeDeleteButton(position))
             }
         })
 
         itemTouchHelper.attachToRecyclerView(binding.rvQuestions)
     }
 
-    private fun deleteButton(position: Int): SwipeHelper.UnderlayButton {
+    private fun swipeDeleteButton(position: Int): SwipeHelper.UnderlayButton {
         return SwipeHelper.UnderlayButton(
             requireContext(),
             getString(R.string.delete),

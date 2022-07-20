@@ -11,8 +11,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
+        android:minHeight="?actionBarSize"
         app:elevation="1dp"
         android:theme="@style/MyActionBar">
 
@@ -23,9 +24,9 @@
             android:background="@android:color/transparent"
             app:contentInsetStartWithNavigation="0dp"
             app:layout_collapseMode="pin"
-            android:theme="@style/ToolbarTheme"
-            app:title="@string/question"
-            app:titleTextColor="@color/red">
+            android:theme="@style/Toolbar"
+            app:titleTextColor="@color/red"
+            app:title="@string/question">
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_answer_visibility"
                 android:layout_width="wrap_content"
@@ -33,7 +34,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 app:chipStrokeWidth="2dp"
-                android:text="Ответ"
+                android:text="@string/answer"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/padding16"
                 app:chipStrokeColor="@color/chip_stroke"
