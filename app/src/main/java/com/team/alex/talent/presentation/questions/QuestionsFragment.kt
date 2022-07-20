@@ -5,9 +5,11 @@ import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.core.view.MenuProvider
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.chip.Chip
@@ -122,8 +124,53 @@ class QuestionsFragment : Fragment(R.layout.fragment_questions),
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
         (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(OPEN_MODE.isAppBarChanged)
         (activity as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(OPEN_MODE.isAppBarChanged)
-        setHasOptionsMenu(true)
+        setupAppBarMenu()
         binding.toolbar.title = getString(OPEN_MODE.appBarTitleRes)
+    }
+
+    private fun setupAppBarMenu(){
+        val menuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear()
+                menuInflater.inflate(OPEN_MODE.menuRes, menu)
+                val searchItem =
+                    menu.findItem(if (OPEN_MODE.isAppBarChanged) R.id.search_vacancies else R.id.search_questions)
+                searchView = searchItem.actionView as SearchView
+
+                //restore searchView state
+                val searchQuery = questionsViewModel.searchQuery
+                if (searchQuery.isNotEmpty()) {
+                    searchView!!.onActionViewExpanded()
+                    searchView!!.setQuery(searchQuery, false)
+                }
+
+                searchView!!.setOnQueryTextListener(this@QuestionsFragment)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.search_questions -> {
+                        true
+                    }
+                    R.id.search_vacancies -> {
+                        true
+                    }
+                    R.id.filter -> {
+                        val filterFragment = SearchFilterFragment()
+                        filterFragment.arguments =
+                            bundleOf(SearchFilterFragment.TAGS_LIST to questionsViewModel.tagsList.value)
+                        filterFragment.show(parentFragmentManager, "tag")
+                        true
+                    }
+                    R.id.add_question -> {
+                        findNavController().navigate(R.id.action_navigation_questions_to_add_question)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setupRecyclerView() {
@@ -167,46 +214,6 @@ class QuestionsFragment : Fragment(R.layout.fragment_questions),
 
     fun getSelectedQuestions(): Set<String> {
         return adapter.getSelectedItems()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear()
-        inflater.inflate(OPEN_MODE.menuRes, menu)
-        val searchItem =
-            menu.findItem(if (OPEN_MODE.isAppBarChanged) R.id.search_vacancies else R.id.search_questions)
-        searchView = searchItem.actionView as SearchView
-
-        //restore searchView state
-        val searchQuery = questionsViewModel.searchQuery
-        if (searchQuery.isNotEmpty()) {
-            searchView!!.onActionViewExpanded()
-            searchView!!.setQuery(searchQuery, false)
-        }
-
-        searchView!!.setOnQueryTextListener(this)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.search_questions -> {
-                true
-            }
-            R.id.search_vacancies -> {
-                true
-            }
-            R.id.filter -> {
-                val filterFragment = SearchFilterFragment()
-                filterFragment.arguments =
-                    bundleOf(SearchFilterFragment.TAGS_LIST to questionsViewModel.tagsList.value)
-                filterFragment.show(parentFragmentManager, "tag")
-                true
-            }
-            R.id.add_question -> {
-                findNavController().navigate(R.id.action_navigation_questions_to_add_question)
-                true
-            }
-            else -> false
-        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {

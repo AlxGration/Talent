@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuProvider
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.team.alex.talent.R
@@ -35,7 +37,6 @@ class VacanciesFragment : Fragment(R.layout.fragment_vacancies),
         _binding = FragmentVacanciesBinding.bind(view)
 
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
-        setHasOptionsMenu(true)
 
         vacanciesViewModel.errorMsg.observe(viewLifecycleOwner, { msg ->
             binding.tvError.text = msg.toString(requireContext())
@@ -57,9 +58,35 @@ class VacanciesFragment : Fragment(R.layout.fragment_vacancies),
             }
         })
 
+        setupAppBarMenu()
         setupRecyclerView()
         setupFragmentResultListeners()
+    }
 
+    private fun setupAppBarMenu(){
+        val menuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear()
+                menuInflater.inflate(R.menu.vacancies_app_bar_menu, menu)
+                val searchItem = menu.findItem(R.id.search_vacancies)
+                searchView = searchItem.actionView as SearchView
+                searchView!!.setOnQueryTextListener(this@VacanciesFragment)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.search_vacancies -> {
+                        true
+                    }
+                    R.id.add_vacancy -> {
+                        findNavController().navigate(R.id.action_navigation_vacancies_to_add_vacancy)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setupFragmentResultListeners() {
@@ -87,27 +114,6 @@ class VacanciesFragment : Fragment(R.layout.fragment_vacancies),
     private fun toggleNoVacanciesImage(needToShow: Boolean) {
         binding.tvError.text = if (needToShow) getString(R.string.not_found) else ""
         binding.ivNotFound.visibility = if (needToShow) View.VISIBLE else View.GONE
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear()
-        inflater.inflate(R.menu.vacancies_app_bar_menu, menu)
-        val searchItem = menu.findItem(R.id.search_vacancies)
-        searchView = searchItem.actionView as SearchView
-        searchView!!.setOnQueryTextListener(this)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.search_vacancies -> {
-                true
-            }
-            R.id.add_vacancy -> {
-                findNavController().navigate(R.id.action_navigation_vacancies_to_add_vacancy)
-                true
-            }
-            else -> false
-        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {

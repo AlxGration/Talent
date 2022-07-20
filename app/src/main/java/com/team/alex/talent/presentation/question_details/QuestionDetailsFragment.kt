@@ -3,10 +3,15 @@ package com.team.alex.talent.presentation.question_details
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
 import com.team.alex.talent.R
 import com.team.alex.talent.databinding.FragmentQuestionDetailsBinding
@@ -65,12 +70,18 @@ class QuestionDetailsFragment : Fragment(R.layout.fragment_question_details) {
         (activity as MainActivity).setSupportActionBar(binding.toolbar)
         (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as MainActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        setHasOptionsMenu(true)
+        setupAppBarMenu()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        menu.clear()
-        inflater.inflate(R.menu.empty_app_bar_menu, menu)
+    private fun setupAppBarMenu() {
+        val menuHost = requireActivity()
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menu.clear()
+                menuInflater.inflate(R.menu.empty_app_bar_menu, menu)
+            }
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean  = false
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     override fun onResume() {
