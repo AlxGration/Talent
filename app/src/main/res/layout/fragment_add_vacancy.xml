@@ -17,15 +17,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
+        style="@style/Widget.RoundButton"
         android:id="@+id/btn_add_vacancy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/padding16"
-        android:background="@drawable/style_btn"
-        android:fontFamily="@font/mts_sans_medium"
-        android:textAllCaps="false"
         tools:text="@string/crete_n_questions"
-        android:textColor="@color/btn_text"
         app:layout_constraintBottom_toTopOf="@id/p_bar"
         app:layout_constraintStart_toStartOf="parent" />
 
